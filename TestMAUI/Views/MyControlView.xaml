@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="TestMAUI.Views.MyControlView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:TestMAUI.ViewModels"
+    x:DataType="viewModels:MyControlViewModel">
+    <Grid
+        Margin="2"
+        BackgroundColor="AntiqueWhite"
+        HeightRequest="200"
+        WidthRequest="160">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Label
+                FontSize="12"
+                HorizontalOptions="End"
+                Text="{Binding FirstLineText}"
+                TextColor="Black" />
+            <Border
+                Grid.Row="1"
+                Margin="3"
+                HeightRequest="140"
+                StrokeShape="RoundRectangle 1,1,1,1"
+                WidthRequest="140">
+                <Border.Stroke>Black</Border.Stroke>
+                <Border.StrokeThickness>0.3</Border.StrokeThickness>
+                <Image
+                    Margin="1"
+                    Aspect="AspectFill"
+                    Background="{StaticResource Gray100}"
+                    HeightRequest="130"
+                    HorizontalOptions="Center"
+                    Source="{Binding MyImage}"
+                    VerticalOptions="Center"
+                    WidthRequest="130" />
+            </Border>
+            <Label
+                Grid.Row="2"
+                Margin="2"
+                FontSize="12"
+                LineBreakMode="WordWrap"
+                Text="{Binding MyTitle}"
+                TextColor="Black" />
+            <RadioButton
+                GroupName="SelectMyControl"
+                IsChecked="{Binding IsClicked}"
+                IsVisible="False" />
+
+            <Button
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                BackgroundColor="Transparent"
+                Command="{Binding ClickOnMeCommand}" />
+        </Grid>
+        <Grid.Triggers>
+            <DataTrigger
+                Binding="{Binding IsClicked}"
+                TargetType="Grid"
+                Value="True">
+                <Setter Property="Background" Value="LightGray" />
+            </DataTrigger>
+        </Grid.Triggers>
+    </Grid>
+</ContentView>
